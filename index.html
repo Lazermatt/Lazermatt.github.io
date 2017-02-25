@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<title>BoC Loading Screen</title>
+		
+		<style type="text/css">
+			body {
+				margin:0px;
+				padding:0px;
+				background-color:#000000;
+			}
+		</style>
+		
+	</head>
+	<body>
+	<script type="text/javascript">
+var collection=[];// final collection of sounds to play
+var loadedIndex=0;// horrible way of forcing a load of audio sounds
+
+// remap audios to a buffered collection
+function init(audios) {
+  for(var i=0;i<audios.length;i++) {
+    var audio = new Audio(audios[i]);
+    collection.push(audio);
+    buffer(audio);
+  }
+}
+
+// did I mention it's a horrible way to buffer?
+function buffer(audio) {
+  if(audio.readyState==4)return loaded();
+  setTimeout(function(){buffer(audio)},100);
+}
+		
+// check if we're leady to dj this
+function loaded() {
+  loadedIndex++;
+  if(collection.length==loadedIndex)playLooped();
+}
+
+// play and loop after finished
+function playLooped() {
+  var audio=Math.floor(Math.random() * (collection.length));
+  audio=collection[audio];
+  audio.play();
+  setTimeout(playLooped,audio.duration*1000);
+}
+
+// the songs to be played!
+init([
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/ssx3rockstar.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/nastygirl.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/teambuddies.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/hereicome.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/gigi.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/remindme.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/banquet.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/work.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/takealookaround.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/calloftheyeti.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/getlow.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/isolation.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/cbfd.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/goodnightirene.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/whataboutmylove.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/bochkabass.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/negaraleono.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/hogsofwar.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/ff7victory.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/isleybrothers.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/beautifulmorning.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/enemyremix.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/ghettoburnin.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/wholikestoparty.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/yelle.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/michael.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/skipabeat.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/drunkensailor.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/aligrap.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/powerofmusic.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/teddypicnic.ogg',
+  'https://dl.dropboxusercontent.com/u/150224402/serverloadingscreen/crockett.ogg'
+]);
+</script>
+
+		<img src="loadingscreenbocnormalgmod.jpg" style="max-width:100%; max-height:100%;" alt="" />
+	</body>
+</html>
